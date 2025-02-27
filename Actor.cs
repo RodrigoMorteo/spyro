@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace GeometricPublicKeyCrypto 
 {
     public class Actor : IActor
@@ -23,15 +25,25 @@ namespace GeometricPublicKeyCrypto
             throw new NotImplementedException();
         }
 
-        /*public string GetOwnVertexAt(int index)
+        public string GetOwnVertexEncodedAt(int index)
         {
-            ownPolygon.CalculateVertex(index);
+            Vector2 vertex = ownPolygon.CalculateVertex(index);
+            String encodedVertex = Helpers.EncodeDoubleToBase64(vertex.X) + Helpers.EncodeDoubleToBase64(vertex.Y);
+            return encodedVertex;
         }
 
-        public string GetOtherPartyVertexAt(int index)
+        public string GetOtherPartyEncodedVertexAt(int index)
         {
-            otherPartyPolygon.CalculateVertex(index);
+            Vector2 vertex = otherPartyPolygon.CalculateVertex(index);
+            String encodedVertex = Helpers.EncodeDoubleToBase64(vertex.X) + Helpers.EncodeDoubleToBase64(vertex.Y);
+            return encodedVertex;
         }
-        */
+
+        public string GetPolygonInfo()
+        {
+            String info = "Own Polygon: \n" +  ownPolygon.GetPolygonInfo() + "\n" +
+                          "Other Party Polygon: \n" + otherPartyPolygon.GetPolygonInfo();
+            return info;
+        }        
     }
 }

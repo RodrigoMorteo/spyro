@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Text;
 
 namespace GeometricPublicKeyCrypto
 {
@@ -51,6 +52,10 @@ namespace GeometricPublicKeyCrypto
         public void CalculateSideLengthBasedOnRadiusAndOrientation()
         {
             this.SideLength = 2 * this.Radius * Math.Sin(this.Orientation);
+            if(this.SideLength <= 0)
+            {
+                this.SideLength *= -1; //As the Sin of theta can result in a negative value, invert sign 
+            }
         }
         /// <summary>
         /// 
@@ -60,7 +65,7 @@ namespace GeometricPublicKeyCrypto
             this.SideLength = 2 * this.Radius * Math.Sin(Math.PI / this.Sides);  //(f1)   l = 2 * r * sin⁡ ⁣(π / n).
             if(this.SideLength <= 0)
             {
-                throw new Exception("An error occurred while calculating the side length. The result was a negative number.");
+                this.SideLength *= -1; //As the Sin of theta can result in a negative value, invert sign  
             }
         }
         /// <summary>
@@ -131,7 +136,7 @@ namespace GeometricPublicKeyCrypto
             this.Radius = this.SideLength / (2 * Math.PI * Math.Sin(this.Orientation)); // (f11) r = l / [ 2 * π * Sin(θ) ]
             if(this.Radius <= 0)
             {
-                throw new Exception("An error occurred while calculating the radius. The result was a negative number.");
+                this.Radius *= -1; //as the Sin of theta can result in a negative number, invert the sign
             }
         }
         /// <summary>
@@ -139,10 +144,14 @@ namespace GeometricPublicKeyCrypto
         /// </summary>
         public void CalculateOriantationBasedOnTheRadiusAndSideLength()
         {
-            if(this.SideLength <=0 || this.Orientation <=0 ){
+            if(this.SideLength <=0 || this.Radius <=0 ){
                 throw new Exception("Parameter out of bounds");
             }
             this.Orientation = Math.Asin(this.SideLength / (2 * this.Radius)); //is it (2 * Math.Pi * this.Radius)?
+            if(this.Orientation <= 0)
+            {
+                this.Orientation *= -1;
+            }
         }
 
 
@@ -198,6 +207,26 @@ namespace GeometricPublicKeyCrypto
                 throw new ArgumentException("Radius must be greater than 0.");
             } 
             return (value / double.MaxValue) * 2;
-        }          
+        }
+
+        /// <summary>
+        /// Returns a formatted string containing the Polygon's properties and their values.
+        /// </summary>
+        /// <returns>A formatted string representation of the Polygon's properties.</returns>
+        public string GetPolygonInfo()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("------------------- Polygon Information -------------------");
+            sb.AppendLine($"{"Center:",-20} ({Center.X}, {Center.Y})");
+            sb.AppendLine($"{"Radius:",-20} {Radius:F4}");
+            sb.AppendLine($"{"Apothem:",-20} {Apothem:F4}");
+            sb.AppendLine($"{"Side Length:",-20} {SideLength:F4}");
+            sb.AppendLine($"{"Number of Sides:",-20} {Sides:F0}");
+            sb.AppendLine($"{"Orientation:",-20} {Orientation:F4} degrees");
+            sb.AppendLine($"{"Interior Angle:",-20} {InteriorAngle:F4} radians");
+            sb.AppendLine("-----------------------------------------------------------");
+            return sb.ToString();
+        }
+
     }
 }
