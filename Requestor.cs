@@ -18,7 +18,7 @@ namespace  GeometricPublicKeyCrypto
             this.ownPolygon.Orientation = PublicTheta;
             this.ownPolygon.CalculateRadiusBasedOnSideLegnthAndTheta();
             this.ownPolygon.CalculateNumberOfSidesBasedOnRadiusAndSideLength();
-            this.ownPolygon.CalculateInteriorAngle();
+            //this.ownPolygon.CalculateInteriorAngle();
         }
 
         public new void CalculateOtherPartyPolygon () 
@@ -27,7 +27,7 @@ namespace  GeometricPublicKeyCrypto
             this.otherPartyPolygon.Radius = this.ownPolygon.Radius;
             this.otherPartyPolygon.CalculateOriantationBasedOnTheRadiusAndSideLength();
             this.otherPartyPolygon.CalculateNumberOfSidesBasedOnRadiusAndSideLength();
-            this.otherPartyPolygon.CalculateInteriorAngle();
+            //this.otherPartyPolygon.CalculateInteriorAngle();
         }
     }
 

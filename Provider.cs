@@ -16,7 +16,7 @@ namespace GeometricPublicKeyCrypto{
             this.ownPolygon.Sides = PrivateNumberOfSides;
             this.ownPolygon.Orientation = this.PublicTheta;
             this.ownPolygon.CalculateSideLengthBasedOnRadiusAndOrientation();
-            this.ownPolygon.CalculateInteriorAngle();
+            //this.ownPolygon.CalculateInteriorAngle();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GeometricPublicKeyCrypto{
             this.otherPartyPolygon.Orientation = this.PublicTheta;
             this.otherPartyPolygon.CalculateSideLengthBasedOnRadiusAndOrientation();
             this.otherPartyPolygon.CalculateNumberOfSidesBasedOnRadiusAndSideLength();            
-            this.otherPartyPolygon.CalculateInteriorAngle();
+            //this.otherPartyPolygon.CalculateInteriorAngle();
         }
 
         public double CalculateZetaRatio(){

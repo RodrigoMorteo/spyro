@@ -47,8 +47,18 @@ namespace GeometricPublicKeyCrypto
 
             //6. Both now have a common secret and can start sharing information securely
             //For this example both parties will agree to select Bob's Polygon's 3rd vertex coordinates as Key
-            
+            String AlicesKey = Alice.GetOtherPartyEncodedVertexAt(3);
+            String BobsKey = Bob.GetOwnVertexEncodedAt(3);
+            Console.WriteLine("Alice's Key: " + AlicesKey);
+            Console.WriteLine("Bob's Key:   " + BobsKey);
 
+            //Print Alice's Versions of both Polygons
+            Console.WriteLine("Alice's Polygons: ");
+            Console.WriteLine(Alice.GetPolygonInfo());
+
+            //Print Bob's Versions of both Polygons
+            Console.WriteLine("Bob's Polygons: ");
+            Console.WriteLine(Bob.GetPolygonInfo());
         }
     }
 }
