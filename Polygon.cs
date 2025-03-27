@@ -223,7 +223,7 @@ namespace GeometricPublicKeyCrypto
             sb.AppendLine($"{"Side Length:",-20} {SideLength:F4}");
             sb.AppendLine($"{"Number of Sides:",-20} {Sides:F0}");
             sb.AppendLine($"{"Orientation:",-20} {Orientation:F4} degrees");
-            sb.AppendLine($"{"Interior Angle:",-20} {InteriorAngle:F4} radians");
+            //sb.AppendLine($"{"Interior Angle:",-20} {InteriorAngle:F4} radians");
             sb.AppendLine("-----------------------------------------------------------");
             return sb.ToString();
         }
